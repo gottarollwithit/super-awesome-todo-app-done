@@ -52,9 +52,9 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.postgresql</groupId>-->
-            <!--<artifactId>postgresql</artifactId>-->
-            <!--<version>9.4.1212.jre7</version>-->
+        <!--<groupId>org.postgresql</groupId>-->
+        <!--<artifactId>postgresql</artifactId>-->
+        <!--<version>9.4.1212.jre7</version>-->
         <!--</dependency>-->
 
         <dependency>
@@ -79,15 +79,8 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>1.1.2</version>
-                <configuration>
-                    ...
-                    <processTypes>
-                        <web>java $JAVA_OPTS -cp target/classes:target/* Application</web>
-                    </processTypes>
-                </configuration>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
