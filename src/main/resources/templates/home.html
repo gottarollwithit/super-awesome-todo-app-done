@@ -15,8 +15,8 @@
         </div>
         <div class="panel panel-default" th:if="${currentUser ne null}">
             <div class="panel-body">
-                <a href="#" id="addTodoBtn" name="addTodoBtn" data-toggle="modal" class="btn btn-success btn-xs"
-                   data-target="#todo_add_modal" type="button" style="float: right">
+                <a href="#todo_add_modal" id="addTodoBtn" name="addTodoBtn" data-toggle="modal" class="btn btn-success btn-xs"
+                   type="button" style="float: right">
                     <i class="fa fa-plus" aria-hidden="true"></i> <span th:text="#{modal.add}"></span>
                 </a>
                 <table class="table">

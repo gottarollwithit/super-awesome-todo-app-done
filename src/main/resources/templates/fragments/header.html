@@ -28,10 +28,11 @@
                     </a>
                 </li>
                 <li th:if="${currentUser ne null}">
-                    <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
-                        <span class="fa fa-sign-out" aria-hidden="true"></span>&nbsp;Logout
-                    </a>
-                    <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                    <a href="javascript: document.logoutForm.submit()">
+                        <span class="fa fa-sign-out" aria-hidden="true"></span>&nbsp;Logout</a>
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input type="submit" value="Sign Out"/>
+                    </form>
                 </li>
             </ul>
         </div>
