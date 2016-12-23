@@ -81,7 +81,7 @@
             <plugin>
                 <!-- Build an executable JAR -->
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin-plugin</artifactId>
+                <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
