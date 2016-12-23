@@ -81,14 +81,7 @@
             <plugin>
                 <!-- Build an executable JAR -->
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.gottarollwithit.todo.Application</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
+                <artifactId>maven-JAR-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
