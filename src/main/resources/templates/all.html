@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<div class="container" layout:fragment="content">
+    <div class="text-center">
+        <h1>Welcome to SUPER AWESOME TODO APP</h1>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                    All Tasks
+                    </thead>
+                    <tbody th:if="${not #lists.isEmpty(allList)}">
+                    <tr>
+                        <th>message</th>
+                        <th>details</th>
+                        <th>dueTime</th>
+                    </tr>
+                    <tr th:each="item : ${allList}">
+                        <td th:text="${item.priority.message}"></td>
+                        <td th:text="${item.details}"></td>
+                        <td th:text="${item.dueTime}"></td>
+                    </tr>
+                    </tbody>
+                    <tbody th:if="${#lists.isEmpty(allList)}">
+                    <tr>
+                        <td>You haven't created a task yet!</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

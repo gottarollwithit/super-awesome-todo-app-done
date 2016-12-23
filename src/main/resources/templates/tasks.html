@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<div class="container" layout:fragment="content">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="tabbable" id="tabs-140729">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#all-panel" data-toggle="tab">All</a>
+                    </li>
+                    <li>
+                        <a href="#next-month" data-toggle="tab">Next Month</a>
+                    </li>
+                    <li>
+                        <a href="#next-week" data-toggle="tab">Next Week</a>
+                    </li>
+                    <li>
+                        <a href="#timeless" data-toggle="tab">Without Time</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="all-panel">
+                        <table class="table">
+                            <thead>
+                            </thead>
+                            <tbody th:if="${not #lists.isEmpty(allList)}">
+                            <tr>
+                                <th><p th:text="#{todoItem.details}"></p></th>
+                                <th><p th:text="#{todoItem.priority}"></p></th>
+                                <th><p th:text="#{todoItem.dueTime}"></p></th>
+                                <th><p th:text="#{todoItem.done}"></p></th>
+                                <th></th>
+                            </tr>
+                            <tr th:each="item : ${allList}">
+                                <td th:text="${item.details}"></td>
+                                <td th:text="#{${item.priority.message}}" th:class="${item.priority.color}"></td>
+                                <td th:text="${item.dueTime} ? ${#temporals.format(item.dueTime, #messages.msg('dateTime.format'))}"></td>
+                                <td>
+                                    <a th:href="@{/toggleDone/(todoItemId=${item.id},done=${!item.done})}">
+                                        <i th:if="${item.done}" class="fa fa-check" aria-hidden="true"></i>
+                                        <i th:if="not ${item.done}" class="fa fa-times-circle" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/delete/(todoItemId=${item.id},redirect='/tasks')}"
+                                       class="btn btn-danger btn-xs">
+                                        <i class="fa fa-minus" aria-hidden="true"></i> <span
+                                            th:text="#{delete.message}"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody th:if="${#lists.isEmpty(allList)}">
+                            <tr>
+                                <td th:text="#{all.done.message}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="next-month">
+                        <table class="table">
+                            <thead>
+                            </thead>
+                            <tbody th:if="${not #lists.isEmpty(monthList)}">
+                            <tr>
+                                <th><p th:text="#{todoItem.details}"></p></th>
+                                <th><p th:text="#{todoItem.priority}"></p></th>
+                                <th><p th:text="#{todoItem.dueTime}"></p></th>
+                                <th><p th:text="#{todoItem.done}"></p></th>
+                                <th></th>
+                            </tr>
+                            <tr th:each="item : ${monthList}">
+                                <td th:text="${item.details}"></td>
+                                <td th:text="#{${item.priority.message}}" th:class="${item.priority.color}"></td>
+                                <td th:text="${item.dueTime} ? ${#temporals.format(item.dueTime, #messages.msg('dateTime.format'))}"></td>
+                                <td>
+                                    <a th:href="@{/toggleDone/(todoItemId=${item.id},done=${!item.done},redirect='/tasks')}">
+                                        <i th:if="${item.done}" class="fa fa-check" aria-hidden="true"></i>
+                                        <i th:if="not ${item.done}" class="fa fa-times-circle" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/delete/(todoItemId=${item.id},redirect='/tasks')}"
+                                       class="btn btn-danger btn-xs">
+                                        <i class="fa fa-minus" aria-hidden="true"></i> <span
+                                            th:text="#{delete.message}"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody th:if="${#lists.isEmpty(monthList)}">
+                            <tr>
+                                <td th:text="#{month.done.message}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="next-week">
+                        <table class="table">
+                            <thead>
+                            </thead>
+                            <tbody th:if="${not #lists.isEmpty(weekList)}">
+                            <tr>
+                                <th><p th:text="#{todoItem.details}"></p></th>
+                                <th><p th:text="#{todoItem.priority}"></p></th>
+                                <th><p th:text="#{todoItem.dueTime}"></p></th>
+                                <th><p th:text="#{todoItem.done}"></p></th>
+                                <th></th>
+                            </tr>
+                            <tr th:each="item : ${weekList}">
+                                <td th:text="${item.details}"></td>
+                                <td th:text="#{${item.priority.message}}" th:class="${item.priority.color}"></td>
+                                <td th:text="${item.dueTime} ? ${#temporals.format(item.dueTime, #messages.msg('dateTime.format'))}"></td>
+                                <td>
+                                    <a th:href="@{/toggleDone/(todoItemId=${item.id},done=${!item.done},redirect='/tasks')}">
+                                        <i th:if="${item.done}" class="fa fa-check" aria-hidden="true"></i>
+                                        <i th:if="not ${item.done}" class="fa fa-times-circle" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/delete/(todoItemId=${item.id},redirect='/tasks')}"
+                                       class="btn btn-danger btn-xs">
+                                        <i class="fa fa-minus" aria-hidden="true"></i> <span
+                                            th:text="#{delete.message}"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody th:if="${#lists.isEmpty(weekList)}">
+                            <tr>
+                                <td th:text="#{week.done.message}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="timeless">
+                        <table class="table">
+                            <thead>
+                            </thead>
+                            <tbody th:if="${not #lists.isEmpty(timelessList)}">
+                            <tr>
+                                <th><p th:text="#{todoItem.details}"></p></th>
+                                <th><p th:text="#{todoItem.priority}"></p></th>
+                                <th><p th:text="#{todoItem.done}"></p></th>
+                                <th></th>
+                            </tr>
+                            <tr th:each="item : ${timelessList}">
+                                <td th:text="${item.details}"></td>
+                                <td th:text="#{${item.priority.message}}" th:class="${item.priority.color}"></td>
+                                <td>
+                                    <a th:href="@{/toggleDone/(todoItemId=${item.id},done=${!item.done},redirect='/tasks')}">
+                                        <i th:if="${item.done}" class="fa fa-check" aria-hidden="true"></i>
+                                        <i th:if="not ${item.done}" class="fa fa-times-circle" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/delete/(todoItemId=${item.id},redirect='/tasks')}"
+                                       class="btn btn-danger btn-xs">
+                                        <i class="fa fa-minus" aria-hidden="true"></i> <span
+                                            th:text="#{delete.message}"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody th:if="${#lists.isEmpty(timelessList)}">
+                            <tr>
+                                <td th:text="#{timeless.done.message}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
